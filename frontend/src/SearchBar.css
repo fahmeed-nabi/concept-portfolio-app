@@ -1,0 +1,254 @@
+.search-bar {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+html {
+}
+
+.search-bar input[type="text"] {
+  padding: 0.6rem 1rem;
+  width: 280px;
+  border-radius: 999px;
+  border: none;
+  background: #1f1f1f;
+  color: white;
+}
+
+.field-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.field-tags button {
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  background: #333;
+  color: white;
+  border: 1px solid #555;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.field-tags button.selected {
+  background: #e91e63;
+  border-color: #e91e63;
+}
+
+.search-button {
+  background: #e91e63;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 0.5rem 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.search-button:hover {
+  background: #ff4c8b;
+}
+
+.pagination {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  color: white;
+}
+
+.pagination button {
+  background: #e91e63;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  background: #666;
+  cursor: not-allowed;
+}
+
+.search-bar {
+  margin-bottom: 1.5rem;
+}
+
+.search-bar input[type="text"] {
+  padding: 0.6rem;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 0.75rem;
+  border-radius: 6px;
+  border: none;
+  background-color: #2a2a2a;
+  color: white;
+}
+
+.tag-section {
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag-chip {
+  background-color: #ff2b8a;
+  color: white;
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.tag-chip button {
+  background: none;
+  border: none;
+  color: white;
+  margin-left: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.dropdown-toggle {
+  background: none;
+  color: #ff2b8a;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.field-dropdown {
+  background: #1f1f1f;
+  border: 1px solid #444;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.field-search-input {
+  width: 100%;
+  margin-bottom: 0.75rem;
+  padding: 0.5rem;
+  background-color: #2a2a2a;
+  color: white;
+  border: 1px solid #333;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.dropdown-field-list {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.dropdown-field-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dropdown-field-list::-webkit-scrollbar-thumb {
+  background: #ff2b8a;
+  border-radius: 10px;
+}
+
+.dropdown-option {
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  color: white;
+  border-radius: 4px;
+}
+
+.dropdown-option:hover {
+  background-color: #333;
+}
+
+.search-btn {
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #ff2b8a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.search-bar-wrapper {
+  background-color: #121212;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid #333;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  background-color: #222;
+  color: white;
+  border: none;
+  margin-bottom: 1rem;
+}
+
+.toggle-fields-btn {
+  background: none;
+  border: none;
+  color: hotpink;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.search-btn {
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.5rem;
+  background-color: hotpink;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.selected-fields {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.field-bubble {
+  background-color: #ec4899; /* match submit button */
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.remove-bubble {
+  background: none;
+  border: none;
+  color: white;
+  margin-left: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0;
+}
+

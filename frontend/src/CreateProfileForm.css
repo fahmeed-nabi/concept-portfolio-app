@@ -1,5 +1,5 @@
-/* CreateProfileForm.css */
 body {
+  min-height: 100vh;
   background: linear-gradient(180deg, #0b0c2a 0%, #000000 100%);
   color: #ffffff;
   font-family: 'Poppins', sans-serif;
@@ -7,9 +7,6 @@ body {
   padding: 0;
   overflow-x: hidden;
   height: 100%;
-}
-
-html {
 }
 
 form {
@@ -287,6 +284,103 @@ small {
 
 .fade-out {
   opacity: 0;
+}
+
+.tag-bubble {
+  background-color: #e91e63;
+  color: white;
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  margin: 0.25rem;
+}
+
+.remove-bubble {
+  background: none;
+  border: none;
+  color: white;
+  margin-left: 0.5rem;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.see-more-btn {
+  background: none;
+  border: none;
+  color: #e91e63;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.dropdown-field-panel {
+  background: #1f1f1f;
+  padding: 0.75rem;
+  border: 1px solid #333;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.field-search-input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background-color: #2a2a2a;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.dropdown-field-list {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.dropdown-option {
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+.dropdown-option:hover {
+  background-color: #333;
+}
+
+.dropdown-option.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Target only the creative field dropdown list */
+.dropdown-field-list::-webkit-scrollbar {
+  width: 10px;
+}
+
+.dropdown-field-list::-webkit-scrollbar-track {
+  background: #1f1f1f;
+  border-radius: 8px;
+}
+
+.dropdown-field-list::-webkit-scrollbar-thumb {
+  background-color: #ff2b8a;  /* Match your submit button pink */
+  border-radius: 10px;
+  border: 2px solid #1f1f1f;  /* Gap between thumb and track */
+}
+
+/* Optional: on hover */
+.dropdown-field-list::-webkit-scrollbar-thumb:hover {
+  background-color: #ff53a1;
 }
 
 

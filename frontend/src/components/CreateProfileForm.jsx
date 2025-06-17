@@ -5,6 +5,7 @@ import '../CreateProfileForm.css';
 const CreateProfileForm = () => {
   const MAX_NAME_LENGTH = 50;
   const MAX_BIO_LENGTH = 250;
+  const MAX_CREATIVE_FIELDS = 5;
   const DEFAULT_IMAGE_URL = '/default-avatar.jpg';
 
   const [formData, setFormData] = useState({
@@ -20,11 +21,19 @@ const CreateProfileForm = () => {
   const [submitMessage, setSubmitMessage] = useState(null);
   const [isError, setIsError] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [fieldSearch, setFieldSearch] = useState('');
 
   useEffect(() => {
     axios.get('http://127.0.0.1:8000/api/creative-fields/')
-      .then((res) => setCreativeFields(res.data))
-      .catch((err) => console.error(err));
+    .then((res) => {
+      const data = Array.isArray(res.data) ? res.data : res.data.results || [];
+      setCreativeFields(data);
+    })
+    .catch((err) => {
+      console.error('Error fetching creative fields:', err);
+      setCreativeFields([]); // prevent crash
+    });
   }, []);
 
   useEffect(() => {
@@ -61,10 +70,23 @@ const CreateProfileForm = () => {
 
   const handleCreativeFieldsToggle = (fieldId) => {
     setFormData((prev) => {
-      const updated = prev.creative_fields.includes(fieldId)
-        ? prev.creative_fields.filter(id => id !== fieldId)
-        : [...prev.creative_fields, fieldId];
-      return { ...prev, creative_fields: updated };
+      const isSelected = prev.creative_fields.includes(fieldId);
+
+      if (isSelected) {
+        return {
+          ...prev,
+          creative_fields: prev.creative_fields.filter(id => id !== fieldId),
+        };
+      }
+
+      if (prev.creative_fields.length >= MAX_CREATIVE_FIELDS) {
+        return prev; // Do nothing if limit reached
+      }
+
+      return {
+        ...prev,
+        creative_fields: [...prev.creative_fields, fieldId],
+      };
     });
   };
 
@@ -189,56 +211,113 @@ const CreateProfileForm = () => {
         <div className="form-right">
           <label>Portfolio Links</label>
           {formData.portfolio_links.map((link, index) => (
-            <div key={index} className="portfolio-link-row">
-              <div className="portfolio-link-fields">
-                <input
-                  type="text"
-                  name="url"
-                  placeholder="URL"
-                  value={link.url}
-                  onChange={(e) => handlePortfolioLinkChange(index, e)}
-                  required
-                />
-                <input
-                  type="text"
-                  name="label"
-                  placeholder="Label (e.g., Instagram, Website)"
-                  value={link.label}
-                  onChange={(e) => handlePortfolioLinkChange(index, e)}
-                />
+              <div key={index} className="portfolio-link-row">
+                <div className="portfolio-link-fields">
+                  <input
+                      type="text"
+                      name="url"
+                      placeholder="URL"
+                      value={link.url}
+                      onChange={(e) => handlePortfolioLinkChange(index, e)}
+                      required
+                  />
+                  <input
+                      type="text"
+                      name="label"
+                      placeholder="Label (e.g., Instagram, Website)"
+                      value={link.label}
+                      onChange={(e) => handlePortfolioLinkChange(index, e)}
+                  />
+                </div>
+                {formData.portfolio_links.length > 1 && (
+                    <button
+                        type="button"
+                        className="remove-link-btn"
+                        onClick={() => removePortfolioLink(index)}
+                    >
+                      ×
+                    </button>
+                )}
               </div>
-              {formData.portfolio_links.length > 1 && (
-                <button
-                  type="button"
-                  className="remove-link-btn"
-                  onClick={() => removePortfolioLink(index)}
-                >
-                  ×
-                </button>
-              )}
-            </div>
           ))}
 
           {formData.portfolio_links.length < 3 && (
-            <button type="button" className="add-link-btn" onClick={addPortfolioLink}>
-              + Add Another Link
-            </button>
+              <button type="button" className="add-link-btn" onClick={addPortfolioLink}>
+                + Add Another Link
+              </button>
           )}
 
-          <div>
+          <div className="creative-field-section">
             <label>Creative Fields</label>
-            <div className="tag-options">
-              {creativeFields.map(field => (
-                <button
-                  key={field.id}
-                  type="button"
-                  className={`tag-option ${formData.creative_fields.includes(field.id) ? 'selected' : ''}`}
-                  onClick={() => handleCreativeFieldsToggle(field.id)}
-                >
-                  {field.name}
-                </button>
-              ))}
+
+            <div className="selected-tags">
+              {formData.creative_fields.slice(0, 6).map(id => {
+                const field = creativeFields.find(f => f.id === id);
+                return (
+                    <span key={id} className="tag-bubble">
+                      {field?.name}
+                      <button
+                          type="button"
+                          className="remove-bubble"
+                          onClick={() => handleCreativeFieldsToggle(id)}
+                      >
+                      ×
+                      </button>
+                    </span>
+                );
+              })}
+              {formData.creative_fields.length > 6 && (
+                  <span className="tag-overflow">+{formData.creative_fields.length - 6}</span>
+              )}
             </div>
+
+            {/* Toggle dropdown */}
+            <button
+                type="button"
+                className="see-more-btn"
+                onClick={() => setShowDropdown((prev) => !prev)}
+            >
+              {showDropdown ? 'Hide Field List' : '+ Add More'}
+            </button>
+
+            {/* Dropdown list */}
+            {showDropdown && (
+                <div className="dropdown-field-panel">
+                  <input
+                      type="text"
+                      placeholder="Search creative fields..."
+                      value={fieldSearch}
+                      onChange={(e) => setFieldSearch(e.target.value)}
+                      className="field-search-input"
+                  />
+                  <div className="dropdown-field-list">
+                    {creativeFields
+                      .filter(f =>
+                        f.name.toLowerCase().includes(fieldSearch.toLowerCase()) &&
+                        !formData.creative_fields.includes(f.id)
+                      )
+                      .map(field => {
+                        const isDisabled = formData.creative_fields.length >= MAX_CREATIVE_FIELDS;
+
+                        return (
+                          <div
+                            key={field.id}
+                            className={`dropdown-option ${isDisabled ? 'disabled' : ''}`}
+                            onClick={() => !isDisabled && handleCreativeFieldsToggle(field.id)}
+                          >
+                            {field.name}
+                          </div>
+                        );
+                      })}
+                    {creativeFields.filter(f =>
+                        f.name.toLowerCase().includes(fieldSearch.toLowerCase()) &&
+                        !formData.creative_fields.includes(f.id)
+                    ).length === 0 && (
+                        <div className="dropdown-option disabled">No results</div>
+                    )}
+                  </div>
+                </div>
+            )}
           </div>
         </div>
       </div>
@@ -248,9 +327,9 @@ const CreateProfileForm = () => {
       </div>
 
       {submitMessage && (
-        <div className={`submit-message ${isError ? 'error' : 'success'} ${fadeOut ? 'fade-out' : ''}`}>
-          {submitMessage}
-        </div>
+          <div className={`submit-message ${isError ? 'error' : 'success'} ${fadeOut ? 'fade-out' : ''}`}>
+            {submitMessage}
+          </div>
       )}
 
     </form>
