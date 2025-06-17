@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "portfolio",  # my app
     "corsheaders",
+    "django_filters",
 ]
 
 MIDDLEWARE = [
@@ -72,6 +73,15 @@ TEMPLATES = [
         },
     },
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',  # Disable browsable API if you don't need it
+    ],
+}
 
 WSGI_APPLICATION = "core.wsgi.application"
 

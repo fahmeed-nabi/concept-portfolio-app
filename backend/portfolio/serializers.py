@@ -1,3 +1,5 @@
+import json
+
 from rest_framework import serializers
 from .models import CreativeProfile, CreativeField, PortfolioLink
 
@@ -15,33 +17,29 @@ class PortfolioLinkSerializer(serializers.ModelSerializer):
 
 
 class CreativeProfileSerializer(serializers.ModelSerializer):
-    creative_fields = serializers.PrimaryKeyRelatedField(
-        many=True, queryset=CreativeField.objects.all()
-    )
-    portfolio_links = PortfolioLinkSerializer(many=True)
-    profile_picture = serializers.ImageField(required=False)
+    portfolio_links = PortfolioLinkSerializer(many=True, read_only=True)
+    creative_fields = serializers.PrimaryKeyRelatedField(queryset=CreativeField.objects.all(), many=True)
 
     class Meta:
         model = CreativeProfile
-        fields = [
-            'id',
-            'name',
-            'profile_picture',
-            'bio',
-            'creative_fields',
-            'portfolio_links',
-            'created_at',
-        ]
-        read_only_fields = ['id', 'created_at']
+        fields = '__all__'
+        extra_kwargs = {
+            'profile_picture': {'required': False, 'allow_null': True}
+        }
 
     def create(self, validated_data):
-        portfolio_links_data = validated_data.pop('portfolio_links', [])
+        request = self.context.get('request')
+
+        portfolio_links_raw = request.data.get('portfolio_links_json')
+        portfolio_links = json.loads(portfolio_links_raw) if portfolio_links_raw else []
+
         creative_fields = validated_data.pop('creative_fields', [])
         profile = CreativeProfile.objects.create(**validated_data)
         profile.creative_fields.set(creative_fields)
 
-        for link_data in portfolio_links_data:
-            PortfolioLink.objects.create(profile=profile, **link_data)
+        for link in portfolio_links:
+            PortfolioLink.objects.create(profile=profile, **link)
+
         return profile
 
     def to_representation(self, instance):

@@ -1,38 +1,291 @@
-.App {
+/* App.css */
+body {
+  background: linear-gradient(180deg, #0b0c2a 0%, #000000 100%);
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+html {
+}
+
+form {
+  max-width: 1000px;
+  margin: 4rem auto;
+  padding: 2.5rem;
+  background-color: #1a1a1a;
+  border-radius: 1rem;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+
+h1, h2 {
+  font-weight: 600;
+  font-size: 2rem;
   text-align: center;
+  color: #ffffff;
+  margin-bottom: 2rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #e0e0e0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+input[type="text"],
+input[type="file"],
+textarea,
+select {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1.25rem;
+  border: none;
+  border-radius: 0.75rem;
+  background-color: #2a2a2a;
+  color: #fff;
+  resize: none;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #aaa;
+}
+
+button {
+  background-color: #e91e63;
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 0.75rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #ff2d75;
+}
+
+.portfolio-link {
+  margin-bottom: 1rem;
+}
+
+.portfolio-link-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.portfolio-link-fields {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.remove-link-btn {
+  background-color: #e91e63; /* Same pink as profile picture remove */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.remove-link-btn:hover {
+  background-color: #ff4c8b;
+}
+
+.preview-img {
+  display: block;
+  margin-top: 1rem;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+.tag-select {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #2a2a2a;
+  color: #fff;
+  height: auto;
+}
+
+.add-link-btn {
+  margin-top: 0.5rem;
+  background-color: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  margin-bottom: 2rem;
+}
+
+.add-link-btn:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.custom-file-upload {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #282828;
+  color: #fff;
+  border-radius: 0.75rem;
+  border: 1px solid #555;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin-bottom: 2rem;
+}
+
+.custom-file-upload:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.preview-container {
+  position: relative;
+  display: inline-block;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.remove-image-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(40%, -40%);
+  background-color: #e91e63;
+  border: none;
+  color: white;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+
+.remove-image-btn:hover {
+  background-color: #ff2d75;
+}
+
+.form-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  align-items: flex-start;
+}
+
+small {
+  display: block;
+  margin-top: 0.1rem;
+  margin-bottom: 1.2rem;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+.tag-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.tag-option {
+  padding: 0.5rem 1rem;
+  border: 2px solid #555;
+  background-color: transparent;
+  border-radius: 0.75rem;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.tag-option.selected {
+  border-color: #e91e63;
+  background-color: #e91e63;
+  color: #fff;
+}
+
+.tag-option:hover {
+  border-color: #999;
+}
+
+.form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .form-grid {
+    flex-direction: row;
+    gap: 10rem;
+    align-items: flex-start;
+  }
+
+  .form-left,
+  .form-right {
+    width: 50%;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.form-section {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #ccc;
+}
+
+.submit-message {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+.submit-message.success {
+  background-color: #1e8e3e;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.submit-message.error {
+  background-color: #b91c1c;
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.fade-out {
+  opacity: 0;
 }
+
+

@@ -8,9 +8,9 @@ class CreativeField(models.Model):
 
 
 class CreativeProfile(models.Model):
-    name = models.CharField(max_length=100)
-    profile_picture = models.ImageField(upload_to='profile_pictures/')
-    bio = models.TextField()
+    name = models.CharField(max_length=50)
+    profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)
+    bio = models.TextField(max_length=250)
     creative_fields = models.ManyToManyField(CreativeField, related_name='profiles')
     created_at = models.DateTimeField(auto_now_add=True)
 
