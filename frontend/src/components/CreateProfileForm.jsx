@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../App.css';
+import '../CreateProfileForm.css';
 
 const CreateProfileForm = () => {
   const MAX_NAME_LENGTH = 50;

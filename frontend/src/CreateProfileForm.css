@@ -1,4 +1,4 @@
-/* App.css */
+/* CreateProfileForm.css */
 body {
   background: linear-gradient(180deg, #0b0c2a 0%, #000000 100%);
   color: #ffffff;
@@ -19,6 +19,7 @@ form {
   background-color: #1a1a1a;
   border-radius: 1rem;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+  margin-top: 2rem;
 }
 
 
