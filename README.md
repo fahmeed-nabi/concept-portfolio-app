@@ -30,13 +30,17 @@ This matches the information in the provided `.env` file. Or feel free to change
 python manage.py migrate
 ```
 
-5. Start the development server (backend)
+5. Load initial data (for sample profiles and creative fields)
+```
+python manage.py loaddata portfolio_fixture.json
+```
+6. Start the development server (backend)
 ```
 python manage.py runserver
 ```
 The backend will run on http://127.0.0.1:8000/
 
-6. Open a new terminal and navigate to the frontend directory. Start the React app
+7. Open a new terminal and navigate to the frontend directory. Start the React app
 ```
 npm start
 ```
