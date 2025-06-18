@@ -34,13 +34,13 @@ python manage.py migrate
 ```
 python manage.py runserver
 ```
-
-The backend will run on http://127.0.0.1:8000/admin/
+The backend will run on http://127.0.0.1:8000/
 
 6. Open a new terminal and navigate to the frontend directory. Start the React app
 ```
 npm start
 ```
+The frontend will run on http://localhost:3000
 
 ### Troubleshooting PostgreSQL Permission Denied Error
 If you run 'python manage.py migrate' and see django.db.utils.ProgrammingError: permission denied for schema public:
