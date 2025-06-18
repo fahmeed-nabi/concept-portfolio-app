@@ -11,6 +11,7 @@ const CreateProfileForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     bio: '',
+    skills: '',
     profile_picture: null,
     creative_fields: [],
     portfolio_links: [{ url: '', label: '' }],
@@ -116,6 +117,7 @@ const CreateProfileForm = () => {
     const data = new FormData();
     data.append('name', formData.name);
     data.append('bio', formData.bio);
+    data.append('skills', formData.skills);
     if (formData.profile_picture) {
       data.append('profile_picture', formData.profile_picture);
     }
@@ -147,12 +149,12 @@ const CreateProfileForm = () => {
           <div>
             <label>Name</label>
             <input
-              type="text"
-              name="name"
-              maxLength={MAX_NAME_LENGTH}
-              value={formData.name}
-              onChange={handleChange}
-              required
+                type="text"
+                name="name"
+                maxLength={MAX_NAME_LENGTH}
+                value={formData.name}
+                onChange={handleChange}
+                required
             />
             <small>{MAX_NAME_LENGTH - formData.name.length} characters remaining</small>
           </div>
@@ -160,13 +162,13 @@ const CreateProfileForm = () => {
           <div>
             <label>Bio</label>
             <textarea
-              name="bio"
-              rows={6}
-              maxLength={MAX_BIO_LENGTH}
-              value={formData.bio}
-              onChange={handleChange}
-              required
-              style={{ resize: 'none' }}
+                name="bio"
+                rows={6}
+                maxLength={MAX_BIO_LENGTH}
+                value={formData.bio}
+                onChange={handleChange}
+                required
+                style={{resize: 'none'}}
             />
             <small>{MAX_BIO_LENGTH - formData.bio.length} characters remaining</small>
           </div>
@@ -174,12 +176,12 @@ const CreateProfileForm = () => {
           <div>
             <label>Profile Picture</label>
             <input
-              type="file"
-              id="profile_picture"
-              name="profile_picture"
-              accept="image/*"
-              onChange={handleFileChange}
-              hidden
+                type="file"
+                id="profile_picture"
+                name="profile_picture"
+                accept="image/*"
+                onChange={handleFileChange}
+                hidden
             />
             <label htmlFor="profile_picture" className="custom-file-upload">
               Upload Profile Picture
@@ -187,23 +189,34 @@ const CreateProfileForm = () => {
 
             <div className="preview-container">
               <img
-                src={previewURL || DEFAULT_IMAGE_URL}
-                alt="Preview"
-                className="preview-img"
+                  src={previewURL || DEFAULT_IMAGE_URL}
+                  alt="Preview"
+                  className="preview-img"
               />
               {previewURL && (
-                <button
-                  type="button"
-                  className="remove-image-btn"
-                  onClick={() => {
-                    setFormData(prev => ({ ...prev, profile_picture: null }));
-                    setPreviewURL(null);
-                  }}
-                >
-                  ×
-                </button>
+                  <button
+                      type="button"
+                      className="remove-image-btn"
+                      onClick={() => {
+                        setFormData(prev => ({...prev, profile_picture: null}));
+                        setPreviewURL(null);
+                      }}
+                  >
+                    ×
+                  </button>
               )}
             </div>
+          </div>
+
+          <div>
+            <label>Skills</label>
+            <textarea
+                name="skills"
+                rows={4}
+                value={formData.skills}
+                onChange={handleChange}
+                placeholder="e.g. photo editing, Adobe XD, color grading"
+            />
           </div>
         </div>
 
@@ -213,7 +226,7 @@ const CreateProfileForm = () => {
           {formData.portfolio_links.map((link, index) => (
               <div key={index} className="portfolio-link-row">
                 <div className="portfolio-link-fields">
-                  <input
+                <input
                       type="text"
                       name="url"
                       placeholder="URL"
@@ -292,23 +305,23 @@ const CreateProfileForm = () => {
                   />
                   <div className="dropdown-field-list">
                     {creativeFields
-                      .filter(f =>
-                        f.name.toLowerCase().includes(fieldSearch.toLowerCase()) &&
-                        !formData.creative_fields.includes(f.id)
-                      )
-                      .map(field => {
-                        const isDisabled = formData.creative_fields.length >= MAX_CREATIVE_FIELDS;
+                        .filter(f =>
+                            f.name.toLowerCase().includes(fieldSearch.toLowerCase()) &&
+                            !formData.creative_fields.includes(f.id)
+                        )
+                        .map(field => {
+                          const isDisabled = formData.creative_fields.length >= MAX_CREATIVE_FIELDS;
 
-                        return (
-                          <div
-                            key={field.id}
-                            className={`dropdown-option ${isDisabled ? 'disabled' : ''}`}
-                            onClick={() => !isDisabled && handleCreativeFieldsToggle(field.id)}
-                          >
-                            {field.name}
-                          </div>
-                        );
-                      })}
+                          return (
+                              <div
+                                  key={field.id}
+                                  className={`dropdown-option ${isDisabled ? 'disabled' : ''}`}
+                                  onClick={() => !isDisabled && handleCreativeFieldsToggle(field.id)}
+                              >
+                                {field.name}
+                              </div>
+                          );
+                        })}
                     {creativeFields.filter(f =>
                         f.name.toLowerCase().includes(fieldSearch.toLowerCase()) &&
                         !formData.creative_fields.includes(f.id)
@@ -319,6 +332,7 @@ const CreateProfileForm = () => {
                 </div>
             )}
           </div>
+
         </div>
       </div>
 

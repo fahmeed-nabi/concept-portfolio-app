@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import CreateProfileForm from './components/CreateProfileForm';
 import ProfileList from './components/ProfileList';
+import PublicProfilePage from "./components/PublicProfilePage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<CreateProfileForm/>}/>
           <Route path="/profiles" element={<ProfileList/>}/>
+          <Route path="/profiles/:slug" element={<PublicProfilePage />} />
         </Routes>
       </div>
     </Router>

@@ -17,6 +17,7 @@ class PortfolioLinkSerializer(serializers.ModelSerializer):
 
 
 class CreativeProfileSerializer(serializers.ModelSerializer):
+    slug = serializers.ReadOnlyField()
     portfolio_links = PortfolioLinkSerializer(many=True, read_only=True)
     creative_fields = serializers.PrimaryKeyRelatedField(queryset=CreativeField.objects.all(), many=True)
 

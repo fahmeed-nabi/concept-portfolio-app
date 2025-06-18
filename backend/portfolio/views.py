@@ -30,3 +30,8 @@ class CreativeProfileDetailView(generics.RetrieveUpdateDestroyAPIView):
 class CreativeFieldListView(generics.ListAPIView):
     queryset = CreativeField.objects.all()
     serializer_class = CreativeFieldSerializer
+
+class CreativeProfileSlugView(generics.RetrieveAPIView):
+    queryset = CreativeProfile.objects.all()
+    serializer_class = CreativeProfileSerializer
+    lookup_field = 'slug'

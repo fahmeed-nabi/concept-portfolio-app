@@ -328,6 +328,7 @@ small {
   border: 1px solid #333;
   border-radius: 8px;
   box-sizing: border-box;
+  margin-bottom: 1rem;
 }
 
 .field-search-input {
