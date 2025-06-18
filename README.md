@@ -111,3 +111,4 @@ The key takeaway here is that these AI tools played a major role in my developme
 * Chats/sessions in tools like ChatGPT and Perplexity would often slow down and become saturated due to the large amount of output. This meant that new chats had to begin, but these AI tools did not retain full project context over time (like how Copilot can see the codebase). As a result, follow-up prompts occasionally led to suggestions that ignored previous designs or code decisions, requiring re-clarification or reverting to manual fixes.
 * While helpful for rapid prototyping, AI-recommended CSS fixes occasionally disrupted other layout elements, like causing buttons to stack or images to stretch and compress. These needed manual fine-tuning afterward or requesting AI-generated fixes.
 
+
