@@ -8,5 +8,5 @@ urlpatterns = [
     path('profiles/', CreativeProfileListCreateView.as_view(), name='profile-list-create'),
     path('profiles/<int:pk>/', CreativeProfileDetailView.as_view(), name='profile-detail'),
     path('creative-fields/', CreativeFieldListView.as_view(), name='creative-field-list'),
-path('profiles/slug/<slug:slug>/', CreativeProfileSlugView.as_view(), name='profile-by-slug'),
+    path('profiles/slug/<slug:slug>/', CreativeProfileSlugView.as_view(), name='profile-by-slug'),
 ]

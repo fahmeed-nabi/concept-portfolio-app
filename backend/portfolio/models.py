@@ -35,7 +35,7 @@ class CreativeProfile(models.Model):
 class PortfolioLink(models.Model):
     profile = models.ForeignKey(CreativeProfile, related_name='portfolio_links', on_delete=models.CASCADE)
     url = models.URLField()
-    label = models.CharField(max_length=100, blank=True)  # Optional: "Website", "Instagram", etc.
+    label = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
         return f"{self.profile.name} - {self.label or self.url}"

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import axios from 'axios';
 import ProfileCard from './ProfileCard';
 import SearchBar from './SearchBar';
-import '../ProfileCard.css';
+import '../css/ProfileCard.css';
 
 const ProfileList = () => {
   const [profiles, setProfiles] = useState([]);

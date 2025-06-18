@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework import generics, status
 from rest_framework.filters import SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
@@ -17,7 +16,6 @@ class CreativeProfileListCreateView(generics.ListCreateAPIView):
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         if not serializer.is_valid():
-            print(serializer.errors)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         self.perform_create(serializer)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -27,9 +25,11 @@ class CreativeProfileDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = CreativeProfile.objects.all()
     serializer_class = CreativeProfileSerializer
 
+
 class CreativeFieldListView(generics.ListAPIView):
     queryset = CreativeField.objects.all()
     serializer_class = CreativeFieldSerializer
+
 
 class CreativeProfileSlugView(generics.RetrieveAPIView):
     queryset = CreativeProfile.objects.all()

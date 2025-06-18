@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../ProfileCard.css';
+import '../css/ProfileCard.css';
 
 const ProfileCard = ({ profile }) => {
   const { name, profile_picture, bio, creative_fields, portfolio_links, slug } = profile;

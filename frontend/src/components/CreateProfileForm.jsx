@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../CreateProfileForm.css';
+import '../css/CreateProfileForm.css';
 
 const CreateProfileForm = () => {
+  // Constants
   const MAX_NAME_LENGTH = 50;
   const MAX_BIO_LENGTH = 250;
   const MAX_CREATIVE_FIELDS = 5;
@@ -17,6 +18,7 @@ const CreateProfileForm = () => {
     portfolio_links: [{ url: '', label: '' }],
   });
 
+  // States:
   const [creativeFields, setCreativeFields] = useState([]);
   const [previewURL, setPreviewURL] = useState(null);
   const [submitMessage, setSubmitMessage] = useState(null);
@@ -25,6 +27,9 @@ const CreateProfileForm = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [fieldSearch, setFieldSearch] = useState('');
 
+  // Side Effects:
+
+  // Fetch data from creative fields API on load
   useEffect(() => {
     axios.get('http://127.0.0.1:8000/api/creative-fields/')
     .then((res) => {
@@ -37,6 +42,7 @@ const CreateProfileForm = () => {
     });
   }, []);
 
+  // Clear submit message
   useEffect(() => {
     if (submitMessage) {
       const timeout = setTimeout(() => setSubmitMessage(null), 4000);
@@ -49,7 +55,7 @@ const CreateProfileForm = () => {
       setFadeOut(false); // reset on new message
 
       const fadeTimer = setTimeout(() => setFadeOut(true), 3000); // start fade after 3s
-      const removeTimer = setTimeout(() => setSubmitMessage(null), 4000); // remove after 5s
+      const removeTimer = setTimeout(() => setSubmitMessage(null), 4000); // remove after 4s
 
       return () => {
         clearTimeout(fadeTimer);
@@ -58,6 +64,9 @@ const CreateProfileForm = () => {
     }
   }, [submitMessage]);
 
+  // Input Handlers:
+
+  // Set form state
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));

@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './css/App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import CreateProfileForm from './components/CreateProfileForm';
 import ProfileList from './components/ProfileList';

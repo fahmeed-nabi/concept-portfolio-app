@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import '../SearchBar.css';
+import '../css/SearchBar.css';
 
 const SearchBar = ({ onSearch }) => {
   const [searchText, setSearchText] = useState('');
